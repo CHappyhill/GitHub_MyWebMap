@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <title>My first web map that I test</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <link rel="stylesheet" href="main.css" />
+    </head>
+
+    <body>
+        <H1>My First WebMap ☺ </H1>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.js"></script>
+        <div id="map"></div>
+        <script>
+            //initialize the map
+            const map = L.map('map').setView([51.9741, 5.6688], 14);
+
+            //Create baselayer - tegels
+            const backgroundMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+                    attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                    maxZoom: 19
+                }
+                );
+            // Add base layer to map.
+            backgroundMap.addTo(map);
+
+            // Hash in URL
+            const hash = new L.Hash(map);
+
+           // write code here
+
+
+        </script>
+        <H2>Created by CHappyhill</H2> <H3>Inspired by the work of <a href="https://nieneb.nl/online-projects/">Niene Boeijen</a> from This Way Cartography </H3>
+    </body>
+</html>
