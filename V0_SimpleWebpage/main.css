@@ -1,0 +1,12 @@
+/* CHappyhill - Webmapping V0 - main.css file - Example of external css styling  */
+/* CSS elements used in the index.html file can be refered here and default styling options overwritten by your own preferences */
+body{background-color: lightblue;}
+H3{
+  color:blue;
+}
+
+/* to refer to elements specified with 'div=' use the '#' to mention/refer to them */
+#digiclock{
+  color:red;
+  font-size:50px;
+}

@@ -1,0 +1,50 @@
+<!-- CHappyhill - Webmapping V0 - index.html file - A simple first webpage with html, css and javascript -->
+
+<!doctype html>
+<html>
+
+<head>
+  <title>My WebPage</title>
+  <!-- load external CSS definitions -->
+  <link rel="stylesheet" href="main.css" />
+  <!-- Below some internal CSS definitions -->
+  <style>
+    H4 {
+      background-color: black;
+      color: white;
+      margin-left: 20px;
+    }
+
+  </style>
+
+</head>
+
+<body onload="startTime()">
+  <H1> A first webpage </H1>
+  <H3> The current time: </H3>
+  <div id="digiclock"></div>
+
+  <script>
+    function startTime() {
+      const today = new Date();
+      let h = today.getHours();
+      let m = today.getMinutes();
+      let s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('digiclock').innerHTML =  h + ":" + m + ":" + s;
+      setTimeout(startTime, 1000); // This updates the clock by rurunning the function every second (=1000milliseconds)
+    }
+
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
+  </script>
+
+  <!--  example inline CSS styling -->
+  <H3>Created by CHappyhill </H3>
+  <H4>Inspired by <a href="https://www.w3schools.com/">W3schools</a> </H4>
+</body>
+
+</html>
