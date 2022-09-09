@@ -4,6 +4,7 @@ body{background-color: lightblue;}
 H3{
   color:blue;
 }
+#RedButton{font-size: 30px;}
 
 /* to refer to elements specified with 'div=' use the '#' to mention/refer to them */
 #digiclock{

@@ -1,4 +1,12 @@
-#map { 
-  height: 500px; 
-  width:100%;
-} 
+/* CHappyhill - Webmapping V1 - main.css file */
+
+body{background-color: aliceblue;}
+
+#map {
+  height: 500px;
+  width:90%;
+  margin: auto;
+  outline-style: solid;
+  outline-color: black;
+  outline-width: 2px;
+}

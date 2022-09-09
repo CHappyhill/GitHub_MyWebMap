@@ -1,33 +1,37 @@
+<!-- CHappyhill - Webmapping V1 - index.html file - A simple first webmap with Leaflet -->
+
 <!doctype html>
 <html>
     <head>
-        <title>My first web map that I test</title>
+        <title>My first web map</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
         <link rel="stylesheet" href="main.css" />
     </head>
 
     <body>
-        <H1>My First WebMap ☺ - v1 </H1>
+        <H1>My First WebMap :) - v1 </H1>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.js"></script>
         <div id="map"></div>
         <script>
-            //initialize the map
-            const map = L.map('map').setView([51.9741, 5.6688], 14);
+            //initialize the Leaflet map as a constant
+            const map = L.map('map').setView([51.9741, 5.6688], 14); // note here as well the definition of the zoomlevel (14) and centroid coordinates of the view
 
-            //Create baselayer - tegels
+            //Include a background layer based on a tiled layer service
             const backgroundMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
                     attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                     maxZoom: 19
                 }
                 );
-            // Add base layer to map.
+
+            // Add base layer to the leaflet map.
             backgroundMap.addTo(map);
 
-            // Hash in URL
+            // Optional; Hash in URL; this adds the tile XY and zoomlevel into your weblink
+            //  for this to work uncomment below line and set up a local server to see the effect
             const hash = new L.Hash(map);
 
-           // write code here
+           // write more code here
 
 
         </script>

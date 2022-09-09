@@ -1,3 +1,5 @@
+<!-- CHappyhill - Webmapping V2 - index.html file - A Leaflet webmap with markers -->
+
 <!doctype html>
 <html>
 <head>
@@ -30,8 +32,8 @@
       .setLatLng([51.98526, 5.66365])
       .setContent("This is the Forum building")
       .openOn(map);
-    var GaiaBuilding = L.marker([51.98750, 5.66594]).addTo(map);
-    var AuroraBuilding = L.circle([51.98271, 5.65793], {
+    var GaiaBuilding = L.marker([51.98750, 5.66594]).addTo(map); // Simple marker or 'pin'
+    var AuroraBuilding = L.circle([51.98271, 5.65793], { // Circle shaped marker (one pair of coordinates and a diameter)
       color: 'red', fillColor: '#f03',
       fillOpacity: 0.5, radius: 25
     }).addTo(map);
@@ -42,6 +44,7 @@
       [51.98502, 5.66603],
       [51.98537, 5.66621]
     ]).addTo(map);
+
     // Add pop-ups to the just created markers and symbols
     // for styling of text and inclusion of images or references etc see html documentation; https://www.w3schools.com/html/html_styles.asp and https://www.w3schools.com/html/html_formatting.asp
     AuroraBuilding.bindPopup("This is the Aurora building <br><a href='https://www.wur.nl/nl/show/Aurora-gebouwnummer-127.htm'>Find here more information about this building.</a><br><br><a href='https://pixabay.com/nl/vectors/docent-studenten-schooljongens-158711/'><img src='https://cdn.pixabay.com/photo/2013/07/13/11/48/teacher-158711_1280.png' alt='Photo from PixaBay' height='100'></a><br><br>  Free image taken from <a href='https://pixabay.com/'>PixaBay</a>");
@@ -50,7 +53,7 @@
 
 
     //
-    // write code here
+    // write more code here
 
 
     </script>

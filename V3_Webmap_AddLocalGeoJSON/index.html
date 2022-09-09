@@ -1,3 +1,5 @@
+<!-- CHappyhill - Webmapping V3 - index.html file - A Leaflet webmap enriched with local geojson data -->
+
 <!doctype html>
 <html>
 <head>
@@ -12,13 +14,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.js"></script>
   <div id="map"></div>
   <script>
-    //initialize the map
-    const map = L.map('map').setView([51.98526, 5.66365], 16);
+  //initialize the map
+  const map = L.map('map').setView([51.98526, 5.66365], 16);
 
-    //Create baselayer - tegels
-    const backgroundMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 19 } );
+  //Create baselayer - tegels
+  const backgroundMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    attribution: '<a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+    maxZoom: 19 } );
     // Add base layer to map.
     backgroundMap.addTo(map);
 
@@ -27,11 +29,11 @@
 
     // Create several pop-ups and markers | based on https://leafletjs.com/examples/quick-start/
     var popup = L.popup() // simple pop-up without symbol
-      .setLatLng([51.98526, 5.66365])
-      .setContent("This is the Forum building")
-      .openOn(map);
-    var GaiaBuilding = L.marker([51.98750, 5.66594]).addTo(map);
-    var AuroraBuilding = L.circle([51.98271, 5.65793], {
+    .setLatLng([51.98526, 5.66365])
+    .setContent("This is the Forum building")
+    .openOn(map);
+    var GaiaBuilding = L.marker([51.98750, 5.66594]).addTo(map); // Simple marker or 'pin'
+    var AuroraBuilding = L.circle([51.98271, 5.65793], { // Circle shaped marker (one pair of coordinates and a diameter)
       color: 'red', fillColor: '#f03',
       fillOpacity: 0.5, radius: 25
     }).addTo(map);
@@ -48,35 +50,33 @@
     OrionBuilding.bindPopup("<h3 style='font-size:150%;color:blue;'>This is the <i>Orion</i> building.</h3> <br>Have you ever been in <b style='color:red;'><i>The Spot</b></i> already?");
     GaiaBuilding.bindPopup("<b>Gaia</b><br>Headquarter of the GRS department");
 
-    // Add a geometries from a local geojson file | see also; https://leafletjs.com/examples/geojson/
-    // function fetchJSON(url) { // based on https://gis.stackexchange.com/questions/305646/import-local-geojson-file-into-leaflet
-    //   return fetch(url)
-    //     .then(function(response) {
-    //       return response.json();
-    //     });
-    // };
-    // Fetch the geojson file
+    // Add geometries from a local geojson file | see also; https://leafletjs.com/examples/geojson/
+    // code below is based on https://github.com/NieneB/webmapping_for_beginners_v2/wiki/Leaflet-step-4
+    // create maplayer object to be added to the map (later filled with data from geojson file)
+    var geojsonMarkerOptions = {
+      "color": "#ff7800",
+      "Opacity": 0.65
+    };
     const geojson = L.geoJson(null,{
+      style : geojsonMarkerOptions,
       pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-      }
-    }).addTo(map);
-    fetch("./LocalData/BikeSegments2016_WGS84.geojson") // based on https://github.com/NieneB/webmapping_for_beginners_v2/wiki/Leaflet-step-4
+        return L.circleMarker(latlng);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(feature.properties.HIGHWAY)},
+      }).addTo(map);
+      fetch("./LocalData/BikeSegments2016_WGS84.geojson") // Fetch the geojson file into the geojson object
       .then(response => response.json())
       .then(data => {
-          geojson.addData(data);
+        geojson.addData(data);
       })
-      .catch( error => alert("Sorry, the data cannot be found, this is the error: " + error))
-    // var BikeData = fetchJSON('./LocalData/BikeSegments2016_WGS84.geojson')
-    //             .then(function(data) { return data });
-    // L.geoJSON(BikeData).addTo(map); // add the geojson as layer to the map
+      .catch( error => alert("Sorry, the data cannot be found, this is the error: " + error));
+
+      //
+      // write more code here
 
 
-    //
-    // write code here
-
-
-    </script>
-    <H2>Created by CHappyhill</H2> <H4>Inspired by <a href="https://leafletjs.com/examples.html">Leaflet Examples</a> and the work of <a href="https://nieneb.nl/online-projects/">Niene Boeijen</a> from This Way Cartography </H4>
-  </body>
-  </html>
+      </script>
+      <H2>Created by CHappyhill</H2> <H4>Inspired by <a href="https://leafletjs.com/examples.html">Leaflet Examples</a> and the work of <a href="https://nieneb.nl/online-projects/">Niene Boeijen</a> from This Way Cartography </H4>
+    </body>
+    </html>
